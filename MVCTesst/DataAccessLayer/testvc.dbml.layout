@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="testvc">
+  <DataContextMoniker Name="/testvcDataContext" />
+  <nestedChildShapes>
+    <classShape Id="7d897fe0-9690-4d2c-9428-56d0c37d1b1a" absoluteBounds="3.375, 2.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/testvcDataContext/alumno" />
+      <nestedChildShapes>
+        <elementListCompartment Id="96f0c04a-bd2e-4899-847e-6379d9d7dda6" absoluteBounds="3.39, 2.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6cf5aa0e-91c9-46ff-825c-d9d4a0b5b4be" absoluteBounds="6.75, 2.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/testvcDataContext/materia" />
+      <nestedChildShapes>
+        <elementListCompartment Id="635b8770-4bd1-459e-a5c4-4ec13352a9f8" absoluteBounds="6.765, 2.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.75 : 3.19314697265625); (5.375 : 3.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/testvcDataContext/materia/materia_alumno" />
+      <nodes>
+        <classShapeMoniker Id="6cf5aa0e-91c9-46ff-825c-d9d4a0b5b4be" />
+        <classShapeMoniker Id="7d897fe0-9690-4d2c-9428-56d0c37d1b1a" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

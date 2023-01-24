@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="testC" Class="testvcDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-K17MNOV;Initial Catalog=testC;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="testCConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.alumno" Member="alumnos">
+    <Type Name="alumno">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="apellido" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="idmateria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="materia_alumno" Member="materia" ThisKey="idmateria" OtherKey="id" Type="materia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.materia" Member="materias">
+    <Type Name="materia">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="departamento" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Association Name="materia_alumno" Member="alumnos" ThisKey="id" OtherKey="idmateria" Type="alumno" />
+    </Type>
+  </Table>
+</Database>

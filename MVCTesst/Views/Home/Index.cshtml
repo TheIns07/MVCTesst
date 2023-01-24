@@ -1,0 +1,148 @@
+﻿@{
+    @model List<MVCTesst.Models.ViewModels.AlumnoModel>
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <h2>Registro de Alumnos</h2>
+    <div class="col-md-4">
+        <input type="text" placeholder="Nombre del alumno" id="nombreUsuario" />
+        <input type="text" placeholder="Apellido del alumno" id="apellidoUsuario" />
+        <input type="text" placeholder="ID de la materia" id="materia" />
+        <button type="button" class="btn btn-success" onclick="enviarAlumno()">Enviar</button>
+        <button type="button" class="btn btn-info" onclick="actualizarAlumno()">Actualizar</button>
+    </div>
+    <h2>Registro de Materias</h2>
+    <div class="col-md-4">
+        <input type="text" placeholder="Nombre de la materia" id="nombreMateria" />
+        <input type="text" placeholder="Departamento de Materia" id="departamentoMateria" />
+        <button type="button" class="btn btn-success" onclick="enviarMateria()">Enviar</button>
+        <button type="button" class="btn btn-info" onclick="actualizarMateria()">Actualizar</button>
+        <button type="button" class="btn btn-danger" onclick="borrarMateria()">Borrar</button>
+    </div>
+    <h2>Listado de la escuela</h2>
+
+        <h3>Alumnos</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Materia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    @{foreach (var element in Model)
+                        {
+                            <th scope="row"> @element.id</th>
+                            <td>
+                                @element.nombre
+                            </td>
+                            <td>
+                                @element.apellido
+                            </td>
+                            <td>
+                                @element.idmateria
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" onclick="borrarAlumno(@element.nombre, @element.apellido)">Borrar</button>
+                            </td>
+                        }
+                    }
+
+                </tr>
+
+            </tbody>
+        </table>
+</div>
+
+<script>
+
+    function enviarAlumno() {
+        var nombre = $("#nombreUsuario").val();
+        var apellido = $("#apellidoUsuario").val();
+        var materia = $("#materia").val();
+
+        $.ajax({
+            url: '@Url.Action("sendStudents", "Home")',
+            method: 'post',
+            data: {
+                nombre: nombre,
+                apellido: apellido,
+                materia: materia
+            },
+            success: function (response) {
+                alert("Alumno registrado con exito.")
+                limpiarListaAlumno();
+            }
+        });
+    }
+
+      function enviarMateria() {
+       var nombre = $("#nombreMateria").val();
+       var departamento = $("#departamentoMateria").val();
+        $.ajax({
+            url: '@Url.Action("sendAsignsments", "Home")',
+            method: 'post',
+            data: {
+                nombre: nombre,
+                departamento: departamento
+            },
+            success: function (response) {
+                alert("Materia registrada con exito.")
+                limpiarListaMateria();
+            }
+        });
+    }
+
+    function borrarAlumno(string nombre, string apellido) {
+        var nombre = nombre;
+        var apellido = apellido;
+        $.ajax({
+            url: '@Url.Action("deleteStudent", "Home")',
+            method: 'post',
+            data: {
+                nombre: nombre,
+                apellido: apellido,
+                materia: materia
+            },
+            success: function (response) {
+                alert("Alumno borrado con exito.")
+                limpiarListaAlumno();
+            }
+        });
+    }
+
+    function borrarMateria(string nombre, string departamento) {
+        var nombre = nombre;
+        var departamento = departamento;
+        $.ajax({
+            url: '@Url.Action("deleteAsignsment", "Home")',
+            method: 'post',
+            data: {
+                nombre: nombre,
+                departamento: departamento
+            },
+            success: function (response) {
+                alert("Materia borrada con exito.")
+                limpiarListaMateria();
+            }
+        });
+    }
+
+    function limpiarListaAlumno() {
+        $("#nombreUsuario").val('');
+        $("#apellidoUsuario").val('');
+        $("#completoUsuario").prop("value", '');
+    }
+
+    function limpiarListaMateria() {
+        $("#nombreMateria").val('');
+        $("#departamentoMateria").val('');
+    }
+
+
+</script>
